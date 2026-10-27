@@ -19,7 +19,22 @@ Esta plantilla proporciona un flujo de desarrollo riguroso, portable y 100% agn�
 ├── AGENTS.md            # Guía de colaboración para el asistente de IA
 ├── MEMORY.md            # Registro de estado y decisiones de arquitectura
 └── opencode.json        # Configuración del entorno OpenCode
+
 ```
+---
+
+## 💬 Dos Formas de Trabajar
+
+Puedes interactuar con la plantilla de dos maneras según tu preferencia:
+
+1. **Conversacional (Hablando con el `coordinator`):**
+   Puedes pedirle tareas directamente en lenguaje natural al subagente orquestador y él se encargará de delegar internamente al agente especializado (`planner`, `implementer` o `reviewer`):
+   - *"Hola coordinador, vamos a configurar la constitución del proyecto."*
+   - *"Coordinador, quiero redactar una spec para el módulo de autenticación."*
+   - *"Coordinador, empieza a implementar las tareas pendientes usando TDD."*
+
+2. **Mediante Comandos Atajo (`/sdd-*`):**
+   Si prefieres ir al grano sin redactar mensajes, usa las órdenes directas en el chat (por ejemplo, `/sdd-constitution`, `/sdd-spec`, `/sdd-implement`).
 
 ---
 
