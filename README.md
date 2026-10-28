@@ -6,6 +6,7 @@ Esta plantilla proporciona un flujo de desarrollo riguroso, portable y 100% agn�
 
 ## Estructura del Repositorio
 
+```text
 .
 ├── .opencode/
 │   ├── agents/          # Subagentes (coordinator, planner, implementer, reviewer)
@@ -17,6 +18,7 @@ Esta plantilla proporciona un flujo de desarrollo riguroso, portable y 100% agn�
 ├── AGENTS.md            # Guía de colaboración para el asistente de IA
 ├── MEMORY.md            # Registro ultracompacto de estado y decisiones globales
 └── opencode.json        # Configuración del entorno OpenCode (model routing & token limits)
+```
 
 ---
 
