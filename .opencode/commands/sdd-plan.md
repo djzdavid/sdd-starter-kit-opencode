@@ -1,20 +1,11 @@
 ---
-description: SDD · Genera el plan técnico y el desglose de tareas para una spec aprobada (Uso: /sdd-plan 001-nombre-feature)
-agent: planner
+description: SDD · Genera el plan técnico y el desglose de tareas consolidadas para una spec aprobada (Uso: /sdd-plan 001-nombre-feature)
+agent: coordinator
 ---
-Lee `docs/constitution.md`, `AGENTS.md`, `MEMORY.md` y `specs/$1/spec.md` aplicando la skill sdd.
+Inicia la fase 3 (Plan técnico y Tareas) para la especificación ubicada en `specs/$1/`.
 
-Regla previa obligatoria:
-- Verifica que `specs/$1/spec.md` tenga la cabecera `Estado: aprobada` y no contenga marcadores `[NECESITA ACLARACIÓN]`. Si la spec está en borrador o con dudas pendientes, **DETENTE INMEDIATAMENTE** y notifica al usuario.
-
-Instrucciones de generación:
-1. **NO escribas código de producción.**
-2. Genera `specs/$1/plan.md` cubriendo:
-   - **Módulos y Archivos:** Archivos a crear o modificar con sus responsabilidades individuales.
-   - **Lógica de Negocio:** Dominio, servicios, DTOs y funciones puras/deterministas.
-   - **Algoritmos y Flujos:** Pseudocódigo de los flujos principales y transformaciones de datos.
-   - **Capa de Interfaz / Presentación:** Componentes, vistas y contratos de datos (si aplica al alcance).
-   - **Decisiones Justificadas:** Decisiones técnicas clave con sus alternativas descartadas y fundamentación.
-   - **Estrategia de Testing:** Plan de pruebas unitarias y de integración acorde a la suite y ejecutor definidos en `docs/constitution.md`.
-   - **Trazabilidad:** Mapeo explícito indicando qué Requisito Funcional (RF) de la spec cubre cada componente.
-3. Genera `specs/$1/tasks.md`: Desglose en un máximo de 10 tareas atómicas (estimadas en 20-30 min cada una), ordenadas por dependencias lógicas, vinculadas a sus RF y con un criterio explícito de `"Hecho cuando:"` (medible mediante la suite de tests).
+Instrucciones obligatorias para el flujo:
+1. **Verificación Previa:** Confirma que `specs/$1/spec.md` esté en `Estado: aprobada` y sin dudas pendientes. Si está en borrador o inconclusa, **DETENTE** y notifica al usuario.
+2. **Generación del Plan:** Pide a @planner crear `specs/$1/plan.md` (arquitectura, módulos, funciones puras, decisiones justificadas, estrategia de testing TDD y trazabilidad RF).
+3. **Generación de Tareas Consolidadas:** Pide a @planner crear `specs/$1/tasks.md` desglosando la ejecución en un **MÁXIMO de 3 a 4 tareas principales consolidadas** para optimizar el consumo de tokens. Cada tarea debe tener su criterio `"Hecho cuando:"` medible mediante la suite de tests oficial de `docs/constitution.md`.
+4. **Presentación y Aprobación:** Muestra el resumen del plan y las tareas en consola y **PARÁ a la espera de la aprobación explícita del usuario** antes de iniciar cualquier desarrollo.

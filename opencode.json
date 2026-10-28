@@ -10,5 +10,19 @@
         "--no-usage-statistics"
       ]
     }
+  },
+  "agents": {
+    "coordinator": {
+      "model": "gpt-6.1-sol"
+    },
+    "planner": {
+      "model": "gpt-6.1-sol"
+    },
+    "implementer": {
+      "model": "gemini-3.7-flash"
+    },
+    "reviewer": {
+      "model": "gemini-3.5-flash-lite"
+    }
   }
 }

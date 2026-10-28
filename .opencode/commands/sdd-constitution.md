@@ -1,20 +1,17 @@
 ---
 description: SDD · Propone o revisa los principios innegociables del proyecto en docs/constitution.md (Uso: /sdd-constitution "detalles adicionales del stack o reglas")
-agent: planner
+agent: coordinator
 ---
-Crea o revisa el archivo de gobernanza técnica `docs/constitution.md` aplicando la skill sdd.
+Inicia la definición o actualización de la gobernanza técnica en `docs/constitution.md`.
 
-Instrucciones:
-1. **Inspección de Entorno:** Explora la raíz del proyecto (archivos de configuración de dependencias, estructura de carpetas) y lee `AGENTS.md` y `MEMORY.md` para identificar el stack tecnológico real del repositorio.
-2. **Contexto Adicional:** Considera la información adicional proporcionada por el usuario: $ARGUMENTS
-3. Propón exactamente **6 principios innegociables**, cortos, claros y verificables objetivamente, que abarquen:
-   1. **Simplicidad del Stack:** Definición del stack tecnológico activo (frameworks, base de datos) y prohibición de complejidad innecesaria.
-   2. **Gobernanza de Especificación:** Relación estricta entre la spec y el código ("Ninguna línea de código de producción existe sin una spec aprobada").
-   3. **Arquitectura y Modularidad:** Separación clara entre la lógica de negocio y las capas de presentación/interfaz.
-   4. **Política de Tests (TDD):** Elección del marco de pruebas (testing framework) obligatorio y el comando ejecutor oficial de la suite.
-   5. **Seguridad y Protección de Datos:** Cifrado, manejo de credenciales, secretos y privacidad.
-   6. **Convenio de Idioma y Estilo:** Idioma oficial para código fuente, comentarios, commits, documentación y la interfaz de usuario (UI).
-
-Reglas de entrega:
-- **NO modifiques `docs/constitution.md` todavía:** muestra únicamente la propuesta en consola en un formato conciso.
-- Espera la confirmación o ajustes del usuario antes de guardar el archivo.
+Instrucciones para el flujo:
+1. **Inspección:** Solicita a @planner explorar la raíz del repositorio, las dependencias y la información adicional: $ARGUMENTS.
+2. **Redacción de Principios:** Pide a @planner estructurar exactamente **6 principios innegociables**, claros y verificables:
+   1. **Simplicidad del Stack:** Stack activo y prohibición de complejidad innecesaria.
+   2. **Gobernanza de Especificación:** "Ninguna línea de código de producción existe sin una spec aprobada".
+   3. **Arquitectura y Modularidad:** Separación entre lógica de negocio y capa de presentación.
+   4. **Política de Tests (TDD):** Framework obligatorio y comando oficial de pruebas.
+   5. **Seguridad y Protección de Datos:** Cifrado, secretos y privacidad.
+   6. **Convenio de Idioma y Estilo:** Idioma para código, commits, docs y UI.
+3. **Presentación:** Muestra la propuesta al usuario en consola y **PARÁ** a la espera de su confirmación explícita.
+4. **Guardado:** Una vez aprobada por el usuario, delega el guardado final en `docs/constitution.md`.

@@ -1,18 +1,16 @@
 ---
 description: SDD · Audita la spec como QA detectando ambigüedades sin editar archivos (Uso: /sdd-clarify 001-nombre-feature)
-agent: reviewer
+agent: coordinator
 ---
-Actúa como QA Senior y audita `specs/$1/spec.md` aplicando la skill sdd.
+Inicia la fase 2 (Clarificación / QA Audit) para la especificación ubicada en `specs/$1/spec.md`.
 
-Instrucciones:
-1. Lee minuciosamente `specs/$1/spec.md` y `docs/constitution.md`.
-2. Identifica y reporta problemas organizados en una lista numerada bajo estas 4 categorías:
-   1. **Ambigüedades restantes:** Requisitos que no son medibles ni verificables objetivamente mediante tests o inspección visual.
-   2. **Contradicciones:** Inconsistencias entre los Requisitos Funcionales (RF) o con el alcance definido.
-   3. **Casos límite no cubiertos:** Escenarios de error, límites de datos o fallos de red/fuentes externas omitidos.
-   4. **Conflictos con la Constitución:** Violaciones a los principios innegociables declarados en `docs/constitution.md`.
-
-Reglas estrictas:
-- **NO modifiques ningún archivo (`edit: deny`).**
-- **NO propongas soluciones, código ni arquitectura:** concéntrate únicamente en señalar las fallas o vacíos detectados.
-- Si no encuentras ningún problema, responde explícitamente: `"Sin observaciones. La spec está lista para aprobación."`
+Instrucciones obligatorias para el flujo:
+1. **Auditoría de QA:** Pide a @reviewer que lea `specs/$1/spec.md` y `docs/constitution.md` y reporte de forma sintética:
+   - **Ambigüedades restantes:** Requisitos no medibles u objetivamente verificables.
+   - **Contradicciones:** Inconsistencias entre RFs o con el alcance.
+   - **Casos límite no cubiertos:** Escenarios de error, límites de datos o fallos omitidos.
+   - **Conflictos con la Constitución:** Violaciones a `docs/constitution.md`.
+2. **Restricción de Edición:** Asegúrate de que @reviewer NO modifique ningún archivo ni proponga código/soluciones.
+3. **Manejo de Resultados:**
+   - Si @reviewer indica `"Sin observaciones. La spec está lista para aprobación."`, presenta el resultado y solicita la aprobación explícita del usuario.
+   - Si existen observaciones, presenta la lista al usuario y solicita a @planner corregir `spec.md` antes de pedir la aprobación final.

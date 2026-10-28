@@ -17,7 +17,7 @@ La fuente de verdad técnica, el stack tecnológico (frameworks, base de datos, 
 2. **Gobernanza de Especificación:** Ninguna línea de código de producción o de prueba existe sin una especificación previamente aprobada en la carpeta `specs/`. Un borrador o propuesta en chat no autoriza implementar.
 3. **Cambios Enfocados:** Realizar cambios pequeños, atómicos y estrictamente vinculados al alcance de la tarea actual. No generar estructuras abstractas ni funcionalidades futuras por anticipado.
 4. **Claridad y Confirmación:** Explicar las decisiones con claridad y solicitar aclaraciones mediante `/sdd-clarify` ante cualquier ambigüedad de negocio.
-5. **Cierre de Tareas:** Al finalizar cada tarea, resumir los cambios realizados, reportar los resultados de los tests ejecutados y actualizar `MEMORY.md`.
+5. **Cierre de Especificaciones:** Al finalizar la validación de la spec completa, el rol coordinador resume los cambios realizados y actualiza `MEMORY.md` con un registro ultracompacto.
 
 ---
 
@@ -64,12 +64,12 @@ La fuente de verdad técnica, el stack tecnológico (frameworks, base de datos, 
 
 ## Comandos SDD Disponibles
 
-- `/sdd-constitution`: Define o actualiza las reglas técnicas innegociables.
-- `/sdd-spec [nombre-feature]`: Crea o actualiza una especificación (EARS).
-- `/sdd-clarify [nombre-feature]`: Despeja ambigüedades de negocio.
+- `/sdd-constitution`: Define o actualiza las reglas técnicas innegociables en `docs/constitution.md`.
+- `/sdd-spec [nombre-feature]`: Crea o actualiza una especificación funcional en formato EARS.
+- `/sdd-clarify [nombre-feature]`: Audita la spec como QA despejando ambigüedades.
 - `/sdd-plan [nombre-feature]`: Diseña la arquitectura y plan técnico.
-- `/sdd-tasks [nombre-feature]`: Desglosa las tareas atómicas.
+- `/sdd-tasks [nombre-feature]`: Desglosa las tareas consolidadas (máximo 3-4 por spec).
 - `/sdd-implement [nombre-feature]`: Implementa el código guiado por TDD.
-- `/sdd-validate [nombre-feature]`: Audita el cumplimiento de la spec.
-- `/sdd-change [nombre-feature]`: Gestiona cambios de alcance o requerimientos.
-- `/sdd-status`: Muestra el estado actual del proyecto.
+- `/sdd-validate [nombre-feature]`: Audita la implementación RF por RF mediante tests y MCP visual.
+- `/sdd-change [nombre-feature]`: Gestiona cambios de alcance o requerimientos actualizando `spec.md` primero.
+- `/sdd-status [nombre-feature]`: Muestra la fase actual y el progreso del proyecto.

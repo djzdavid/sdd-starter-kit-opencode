@@ -1,16 +1,14 @@
 ---
-description: SDD · Implementa UNA sola tarea aplicando TDD (Uso: /sdd-implement 001-nombre-feature T1)
-agent: implementer
+description: SDD · Ejecuta la implementación TDD de la spec aprobada (Uso: /sdd-implement 001-nombre-feature)
+agent: coordinator
 ---
-Implementa únicamente la tarea $2 definida en `specs/$1/tasks.md`, siguiendo las directrices de `specs/$1/plan.md`, `docs/constitution.md` y la skill sdd.
+Inicia la fase 4 (Implementación) para la especificación ubicada en `specs/$1/`.
 
-Pasos obligatorios:
-1. **Consulta de Infraestructura:** Lee `docs/constitution.md` para identificar el marco de pruebas y el comando ejecutor de tests oficial del proyecto.
-2. **Tests primero (Red):** Escribe o actualiza los tests correspondientes para la tarea $2 y ejecuta el comando de pruebas del proyecto para confirmar que fallan.
-3. **Código de producción (Green):** Escribe el código estrictamente necesario para hacer pasar los tests.
-4. **Verificación:** Ejecuta el comando de pruebas del proyecto y confirma que la suite pasa en verde. Si la tarea involucra componentes visuales o de interfaz de usuario, verifícalos mediante el MCP de inspección de navegador disponible.
-5. **Cierre de Tarea:** Marca únicamente la tarea $2 como completada en `specs/$1/tasks.md` (`- [x]`), reporta los Requisitos Funcionales (RF) que cubre y los archivos modificados.
-
-Regla de parada estricta:
-- **DETENTE INMEDIATAMENTE** tras completar la tarea $2. No inicies la siguiente tarea bajo ninguna circunstancia.
-- Si $2 es la última tarea de `tasks.md`, actualiza `MEMORY.md` notificando la finalización de la fase de implementación.
+Instrucciones obligatorias para el flujo:
+1. **Delegación de Código:** Solicita a @implementer ejecutar las tareas pendientes de `specs/$1/tasks.md` siguiendo `specs/$1/plan.md` y `docs/constitution.md`.
+2. **Flujo Continuo TDD:** Permite a @implementer avanzar en la ejecución continua de las tareas consolidadas sin frenos intermediarios innecesarios, respetando en cada paso el ciclo Red-Green-Refactor:
+   - **Red:** Crear/actualizar tests y verificar que fallan.
+   - **Green:** Escribir código de producción hasta hacerlos pasar.
+   - **Verificación:** Ejecutar la suite de pruebas oficial y verificar componentes visuales con MCP si aplica.
+3. **Control del Coordinador:** Tras la ejecución, confirma que toda la suite de pruebas pase en verde.
+4. **Validación:** Si las tareas de la spec están completadas, pasa inmediatamente a la fase 5 llamando a @reviewer para validar el veredicto RF por RF.
