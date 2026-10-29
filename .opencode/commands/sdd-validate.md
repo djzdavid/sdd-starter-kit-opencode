@@ -1,16 +1,8 @@
 ---
-description: SDD · Audita y valida la implementación de la spec RF por RF mediante la suite de tests y el MCP visual (Uso: /sdd-validate 001-nombre-feature)
+description: SDD · Reanuda o repite validación con motivo (Uso: /sdd-validate 001-feature)
 agent: coordinator
 ---
-Inicia la fase 5 y 7 (Validación de QA y Cierre) para la especificación ubicada en `specs/$1/`.
 
-Instrucciones obligatorias para el flujo:
-1. **Delegación de Auditoría:** Solicita a @reviewer auditar `specs/$1/` con las siguientes directrices:
-   - **NO modificar ningún archivo.**
-   - Consultar `docs/constitution.md` para ejecutar la suite de pruebas oficial.
-   - Analizar cambios de código (`git status`, `git diff`).
-   - Auditar **Requisito Funcional por Requisito Funcional (RF)** indicando el test que lo cubre o usando el MCP de inspección visual si aplica.
-   - Entregar OBLIGATORIAMENTE el veredicto: `VEREDICTO: APROBADO` o `VEREDICTO: CAMBIOS NECESARIOS`.
-2. **Procesamiento del Veredicto:**
-   - Si es **CAMBIOS NECESARIOS**: Presenta la lista de hallazgos al usuario y reasigna automáticamente las correcciones a @implementer.
-   - Si es **APROBADO**: Resume el veredicto, notifica al usuario y **actualiza `MEMORY.md`** con el registro del cierre en formato ultracompacto.
+Aplica la skill sdd sobre `specs/$1/`. Si ya está cerrada y no cambió código ni alcance, informa la validación vigente sin repetirla. Usa este comando para validación pendiente, cambios posteriores o revisión solicitada, indicando el motivo.
+Reviewer contrasta RF y evidencia del estado actual; ejecuta comprobaciones faltantes o invalidadas. Devuelve APROBADO o CAMBIOS NECESARIOS. Reasigna correcciones dentro del alcance al implementer y revalida (máximo dos rondas). Bloqueos o verificaciones pendientes impiden cierre.
+Con APROBADO sin pendientes, coordinator registra evidencia, estado cerrada y resumen en MEMORY.md. /sdd-implement ya realiza este flujo automáticamente.

@@ -1,105 +1,70 @@
-# Plantilla SDD (Spec-Driven Development) para OpenCode
+# Plantilla SDD para OpenCode
 
-Esta plantilla proporciona un flujo de desarrollo riguroso, portable y 100% agnóstico del stack tecnológico, guiado por especificaciones (Spec-Driven Development) y desarrollo guiado por pruebas (TDD).
+Desarrollo guiado por especificaciones y TDD, con cuatro agentes y una aprobación del paquete completo por feature.
 
----
+## Inicio
 
-## Estructura del Repositorio
+1. Ejecuta `/sdd-constitution` para configurar stack, idioma y comandos reales del proyecto. Aprueba la propuesta completa; coordinator la guarda. Se hace al inicio, no por cada spec.
+2. Ejecuta `/sdd-spec 001-mi-feature "Descripción"`. Planner prepara requisitos, enfoque técnico y tareas juntos. Las dudas bloqueantes se presentan agrupadas. La revisión previa independiente se reserva para riesgo elevado.
+3. Revisa y aprueba el paquete guardado. Esa aprobación autoriza implementar, validar y cerrar de forma continua. Si quieres solo preparar, indícalo al pedir la spec.
+
+Si dejaste un paquete aprobado pendiente, usa `/sdd-implement 001-mi-feature` para retomarlo. Este comando ya incluye validación y cierre: no hace falta ejecutar `/sdd-validate` después.
+
+También puedes pedirlo en lenguaje natural al coordinator. No necesitas invocar cada agente ni cada fase manualmente.
+
+## Agentes
+
+- **Coordinator:** conduce el flujo, registra aprobación y estado, guarda constitución y actualiza memoria.
+- **Planner:** prepara el paquete completo y revisa su coherencia en una ejecución.
+- **Implementer:** ejecuta tareas con TDD continuo y entrega evidencia de pruebas y UI.
+- **Reviewer:** revisa el resultado final RF por RF; revisa antes de implementar cuando el riesgo lo justifique.
+
+Las asignaciones de modelos y el MCP permanecen en `opencode.json`. Los modelos/proveedores se configuran según el entorno de destino. La reducción de llamadas y contexto repetido busca disminuir tokens y latencia; el ahorro debe medirse en ejecuciones comparables.
+
+## Documentos proporcionales
 
 ```text
-.
-├── .opencode/
-│   ├── agents/          # Subagentes (coordinator, planner, implementer, reviewer)
-│   ├── commands/        # Comandos del ciclo de vida SDD (/sdd-*)
-│   └── skills/          # Skills portátiles (sdd)
-├── docs/
-│   └── constitution.md  # Reglas innegociables con marcadores [PENDIENTE] (se configura al inicio)
-├── specs/               # Especificaciones funcionales por característica
-├── AGENTS.md            # Guía de colaboración para el asistente de IA
-├── MEMORY.md            # Registro ultracompacto de estado y decisiones globales
-└── opencode.json        # Configuración del entorno OpenCode (model routing & token limits)
+.opencode/agents/             # Cuatro roles
+.opencode/commands/           # Entradas al flujo
+.opencode/skills/sdd/SKILL.md  # Formatos, estados y evidencia
+.opencode/skills/frontend-design/
+docs/constitution.md         # Stack y comandos del proyecto destino
+specs/NNN-feature/spec.md     # Paquete compacto por defecto
+specs/NNN-feature/plan.md     # Solo para formato extendido
+specs/NNN-feature/tasks.md    # Solo para formato extendido
+AGENTS.md                    # Reglas de colaboración y límites
+MEMORY.md                    # Estado y decisiones ultracompactos
+opencode.json                # Modelos y MCP
 ```
 
----
+El paquete compacto contiene objetivo, RF verificables en EARS, límites, enfoque técnico, una a cuatro tareas y una tabla RF → prueba. Para varios módulos, integraciones, migraciones o arquitectura relevante, separar enfoque y tareas sin duplicar contenido. El detalle técnico va fuera de los RF.
 
-## Dos Formas de Trabajar
+## Aprobación y autonomía
 
-Puedes interactuar con la plantilla de dos maneras según tu preferencia:
+La aprobación explícita del paquete guardado precede cualquier código de producción o pruebas. No se solicitan aprobaciones separadas de plan, tareas e implementación. Los cambios de alcance se preparan completos y se aprueban una vez. Migraciones, contratos y dependencias deben estar autorizados explícitamente o detallados en el enfoque técnico aprobado.
 
-1. Conversacional (Hablando con el coordinator):
-   Puedes pedirle tareas directamente en lenguaje natural al subagente orquestador y él se encargará de delegar internamente al agente especializado (planner, implementer o reviewer):
-   - "Hola coordinador, vamos a configurar la constitución del proyecto."
-   - "Coordinador, quiero redactar una spec para el módulo de autenticación."
-   - "Coordinador, empieza a implementar las tareas pendientes usando TDD."
+El agente resuelve detalles internos y fallos reparables dentro del alcance. Consulta si cambia el comportamiento, falta una decisión de negocio o aparece un bloqueo real. Tras dos rondas de correcciones sin resolver hallazgos finales, informa el bloqueo.
 
-2. Mediante Comandos Atajo (/sdd-*):
-   Si prefieres ir al grano sin redactar mensajes, usa las órdenes directas en el chat (por ejemplo, /sdd-constitution, /sdd-spec, /sdd-implement).
+Estados en spec.md: `borrador` → `aprobada` → `en implementación` → `en validación` → `cerrada`. Registrar aprobación y alcance; tareas completas no equivalen a cierre.
 
----
+## Verificación sin duplicaciones
 
-## Paso a Paso: Cómo Iniciar un Proyecto Nuevo
+Durante TDD se ejecutan pruebas afectadas; al finalizar, la suite completa oficial. Los agentes comparten evidencia comprobable del mismo estado del código. Se repite por cambios posteriores, evidencia insuficiente o riesgo concreto, con motivo explícito. La revisión final independiente se mantiene.
 
-Una vez que hayas clonado este repositorio plantilla para tu nuevo proyecto, abre el chat de OpenCode y sigue esta secuencia:
+UI requiere comprobación del flujo, consola, red y vistas móvil/escritorio cuando aplique. Las herramientas ausentes y las comprobaciones pendientes se informan; impiden declarar validación completa. Esta plantilla no incluye una aplicación ni un ejecutor de tests: configura los comandos en la constitución del proyecto destino.
 
-### Paso 1: Configurar la Constitución Técnica
-Escribe en el chat:
-/sdd-constitution
+## Comandos
 
-Qué sucederá: El agente analizará tu repositorio e inspeccionará los archivos del proyecto para reemplazar los marcadores [PENDIENTE] en docs/constitution.md con el stack tecnológico, framework de tests, convenios de idioma y comandos oficiales. Te pedirá confirmación antes de guardar.
+| Comando | Uso |
+| --- | --- |
+| `/sdd-constitution` | Configuración inicial de gobernanza |
+| `/sdd-spec [nombre]` | Preparar paquete completo para aprobar |
+| `/sdd-implement [nombre]` | Retomar implementación, validar y cerrar |
+| `/sdd-change [nombre] "cambio"` | Preparar y aprobar un cambio de alcance |
+| `/sdd-status [nombre]` | Consultar estado y siguiente acción |
+| `/sdd-clarify [nombre]` | Auditoría puntual opcional de dudas/riesgos |
+| `/sdd-plan [nombre]` | Ajustar enfoque y tareas, sin regeneración rutinaria |
+| `/sdd-tasks [nombre]` | Ajustar solo tareas |
+| `/sdd-validate [nombre]` | Reanudar o repetir validación con motivo |
 
----
-
-### Paso 2: Crear la Primera Especificación (Spec)
-Escribe en el chat detallando la característica que deseas construir:
-/sdd-spec NNN-mi-nueva-feature "Descripción inicial de la idea"
-
-Qué sucederá: El agente planner creará el borrador en specs/NNN-mi-nueva-feature/spec.md utilizando la plantilla oficial de la skill SDD en formato EARS (Requisitos Funcionales, Casos Límite y Criterios de Aceptación).
-
----
-
-### Paso 3: Aclarar Dudas y Auditar QA
-Audita la especificación para resolver ambigüedades antes de planificar:
-/sdd-clarify NNN-mi-nueva-feature
-
-Qué sucederá: El agente reviewer revisará la spec como QA. Si detecta puntos ambiguos de negocio, te presentará preguntas breves para definir el comportamiento exacto antes de dar la spec por aprobada.
-
----
-
-### Paso 4: Generar el Plan Técnico y Tareas Consolidadas
-Una vez aprobada la spec, genera la arquitectura y el desglose de tareas:
-/sdd-plan NNN-mi-nueva-feature
-
-y posteriormente:
-/sdd-tasks NNN-mi-nueva-feature
-
-Qué sucederá: Se crearán los archivos plan.md y tasks.md dentro de la carpeta de la spec, desglosando la implementación en un máximo de 3 a 4 tareas principales consolidadas por spec para optimizar tokens y asegurar ejecuciones TDD fluidas.
-
----
-
-### Paso 5: Implementar guiado por TDD
-Para comenzar a escribir código:
-/sdd-implement NNN-mi-nueva-feature
-
-Qué sucederá: El agente implementer tomará las tareas de tasks.md, creará primero las pruebas unitarias/integración en rojo, escribirá el código mínimo para pasarlas a verde y completará el ciclo Red-Green-Refactor.
-
----
-
-### Paso 6: Validar y Auditar el Cumplimiento
-Al finalizar la implementación, audita el resultado final:
-/sdd-validate NNN-mi-nueva-feature
-
-Qué sucederá: El agente reviewer ejecutará la suite completa de pruebas, verificará el cumplimiento Requisito Funcional por Requisito Funcional (RF) y entregará el veredicto (APROBADO o CAMBIOS NECESARIOS). Si es aprobado, el coordinator cerrará la spec y actualizará MEMORY.md.
-
----
-
-## Resumen de Comandos Rápidos
-
-- /sdd-constitution: Configura el stack, reglas y comandos en docs/constitution.md.
-- /sdd-spec [nombre]: Crea o edita la especificación en borrador (EARS).
-- /sdd-clarify [nombre]: Audita la spec como QA y resuelve ambigüedades.
-- /sdd-plan [nombre]: Diseña la arquitectura y plan técnico (plan.md).
-- /sdd-tasks [nombre]: Genera el desglose de tareas consolidadas (máx 3-4).
-- /sdd-implement [nombre]: Ejecuta la implementación guiada estrictamente por TDD.
-- /sdd-validate [nombre]: Audita RF por RF con tests/MCP visual y cierra la spec.
-- /sdd-change [nombre]: Gestiona cambios de alcance o requerimientos.
-- /sdd-status [nombre]: Muestra la fase actual y el porcentaje de progreso.
+No es necesario ejecutar los comandos opcionales en secuencia: el flujo principal ya realiza ese trabajo.

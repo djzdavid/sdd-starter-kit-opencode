@@ -1,70 +1,63 @@
 ---
 name: sdd
-description: "Úsala siempre que trabajes con Spec-Driven Development en este proyecto (docs/constitution.md o cualquier archivo dentro de specs/) - redactar, revisar o cambiar specs, planes y tareas, o implementar y validar tareas de una spec."
+description: "Usar para preparar, cambiar, implementar o validar especificaciones SDD en este proyecto."
 ---
 
 # Spec-Driven Development (SDD)
 
-## Flujo
-Constitución → Spec → Clarificación → Plan → Tareas → Implementación → Validación → Cierre.
-- **Aprobaciones del Usuario:** Nunca pases a la siguiente fase sin la aprobación explícita del usuario (Spec, Plan/Tareas e Implementación).
-- **La Spec Manda:** Si algo no está en la spec, no se implementa. Si falta una decisión de negocio, detente y consulta al usuario.
-- **Gestión de Cambios:** Un cambio de requisitos actualiza primero la spec (spec.md), posteriormente el plan (plan.md) y tareas (tasks.md), y finalmente el código fuente.
-- **Estructura por Feature:** Cada especificación vive en su propia carpeta: specs/NNN-nombre/ conteniendo spec.md, plan.md y tasks.md.
-- **Gobernanza de Memoria:** Únicamente el agente coordinator actualiza MEMORY.md con un registro ultracompacto al finalizar y validar el cierre completo de la spec.
+## Flujo y aprobación
+Constitución configurada → Preparación conjunta → Aprobación única → Implementación TDD → Revisión final → Cierre.
+- Preparar requisitos, enfoque técnico y tareas en una llamada al planner, antes de solicitar aprobación.
+- La aprobación explícita del paquete autoriza su implementación y validación continuas. No pedir aprobaciones separadas de spec, plan, tareas e implementación.
+- Ningún código de producción o de prueba se escribe sin una spec aprobada que lo cubra.
+- Agrupar preguntas de negocio bloqueantes; registrar decisiones técnicas rutinarias dentro del alcance sin consultar de nuevo.
+- Cambios de alcance o de comportamiento requieren actualizar primero el paquete y aprobar el cambio. Migraciones, contratos y dependencias requieren autorización explícita o estar detallados en el enfoque técnico aprobado.
+- La revisión previa independiente solo se activa por riesgo: seguridad, permisos, datos sensibles, migraciones, contratos o reglas de negocio críticas. Resolver hallazgos antes de presentar el paquete completo.
+- Las modificaciones metodológicas de esta plantilla son documentales; no requieren inventar una feature de aplicación.
 
----
+## Documentos proporcionales
+Cada feature vive en `specs/NNN-nombre/`.
+- **Compacta (por defecto):** un `spec.md` con requisitos, enfoque técnico, tareas y validación. Adecuada para cambios locales que siguen patrones existentes.
+- **Extendida:** `spec.md`, `plan.md` y `tasks.md` cuando hay varios módulos, integraciones, migraciones o decisiones arquitectónicas relevantes. Indicar enlaces desde la spec; no duplicar contenidos.
+- Mantener secciones solo si aportan decisiones o evidencia. No exigir historias, DTOs, pseudocódigo ni alternativas descartadas cuando no sean necesarios.
 
-## Plantilla de Especificación (specs/NNN-nombre/spec.md)
+## Plantilla de spec.md
+# Spec NNN — <Nombre>
+Estado: borrador
+Formato: compacta | extendida
+Riesgo: normal | elevado — <motivo>
+Aprobación: pendiente
 
-# Spec NNN — <Nombre de la Feature>
-Estado: borrador | aprobada | implementada
+### Objetivo y alcance
+<Resultado esperado y exclusiones.>
+### Requisitos verificables
+- RF-1: CUANDO <evento>, EL SISTEMA DEBERÁ <comportamiento>.
+### Casos límite y dudas
+<Solo los relevantes; señalar preguntas bloqueantes.>
+### Enfoque técnico
+<Archivos, decisiones y comprobaciones previstas; en extendida, enlace a plan.md.>
+### Tareas
+- [ ] T1. <Trabajo>. RF-1. Hecho cuando: <criterio verificable>.
+<Una a cuatro tareas; en extendida, enlace a tasks.md.>
+### Validación
+| RF | Prueba o comprobación | Resultado |
+| --- | --- | --- |
+| RF-1 | <Prueba prevista; actualizar con evidencia real> | Pendiente |
 
-## Contexto y objetivo
-## Usuarios / Roles
-## Historias de usuario
-- HU-1: Como <rol>, quiero <acción> para <beneficio>.
+Los RF describen comportamiento sin arquitectura; los detalles técnicos van en su sección. Esta tabla es la única matriz RF → prueba; los demás archivos la referencian.
 
-## Definiciones
-- Términos de dominio o negocio propensos a ambigüedad.
+## Estado persistente
+- `borrador`: paquete sin aprobar; sin código autorizado.
+- `aprobada`: coordinator registra la aprobación explícita del usuario y su alcance en `Aprobación`.
+- `en implementación`: implementer comienza el trabajo aprobado.
+- `en validación`: tareas completas; revisión final pendiente.
+- `cerrada`: reviewer aprueba, sin comprobaciones obligatorias pendientes; coordinator registra resumen y actualiza `MEMORY.md`.
+- Un bloqueo se registra con motivo y siguiente acción, conservando el estado alcanzado. No equiparar tareas completas con cierre.
+- Un cambio de alcance devuelve el paquete a borrador; conservar el registro de la aprobación anterior y señalar qué cambio espera aprobación.
 
-## Requisitos Funcionales (Sintaxis EARS)
-- RF-1: CUANDO <disparador/evento>, EL SISTEMA DEBERÁ <acción>.
-- RF-2: SI <condición no deseada/error>, ENTONCES EL SISTEMA DEBERÁ <respuesta de mitigación>.
-- RF-3: MIENTRAS <estado activo>, EL SISTEMA DEBERÁ <comportamiento continuo>.
-- RF-4: EL SISTEMA DEBERÁ <requisito permanente/ubicuo>.
-
-*Nota: Cada Requisito Funcional (RF) debe enfocar estrictamente el QUÉ y el POR QUÉ (sin stack, archivos ni BD) y ser 100% verificable mediante pruebas automatizadas o comprobación visual.*
-
-## Requisitos No Funcionales
-## Casos Límite y Escenarios de Error
-## Fuera de Alcance
-## Criterios de Finalización
-## Dudas Abiertas
-- [NECESITA ACLARACIÓN] <Pregunta o ambigüedad de negocio pendiente>
-
----
-
-## Estructura del Plan Técnico (specs/NNN-nombre/plan.md)
-
-- **Estrategia de Testing:** Plan de pruebas unitarias/integración acordes al ejecutor y framework de docs/constitution.md.
-- **Módulos y Archivos:** Estructura de archivos a crear/modificar con sus responsabilidades individuales.
-- **Lógica de Negocio:** Dominio, DTOs y funciones puras/deterministas.
-- **Algoritmos y Flujos:** Pseudocódigo de transformaciones y flujos de datos principales.
-- **Capa de Interfaz / Presentación:** Componentes visuales y contratos de datos (si aplica).
-- **Decisiones Justificadas:** Decisiones técnicas clave con sus alternativas descartadas.
-- **Trazabilidad:** Mapeo explícito indicando qué Requisito Funcional (RF) cubre cada componente.
-
----
-
-## Estructura de Tareas Consolidadas (specs/NNN-nombre/tasks.md)
-
-*Instrucción de Consolidación:* Desglosar en un máximo de 3 a 4 tareas principales consolidadas por spec para optimizar tokens y permitir ejecuciones TDD continuas.
-
-- [ ] **T1. <Descripción consolidada de la primera tarea principal>.** RF-1, RF-2
-  - **Archivos proyectados:** src/Domain/..., tests/...
-  - **Hecho cuando:** <Criterio de aceptación verificable con suite de tests en verde o inspección en UI>.
-
-- [ ] **T2. <Descripción consolidada de la siguiente tarea>.** RF-3
-  - **Archivos proyectados:** src/UI/...
-  - **Hecho cuando:** <Criterio de aceptación verificable>.
+## Evidencia y contexto
+- Pruebas afectadas durante Red-Green-Refactor y suite completa al cierre. Usar el ejecutor oficial de la constitución; no inventar comandos pendientes.
+- Una ejecución completa válida sobre el mismo estado del código se comparte entre agentes. Repetir por cambios posteriores, evidencia insuficiente o riesgo concreto, indicando el motivo.
+- Registrar comando, resultado y estado del código verificado; no declarar verificaciones que no se realizaron.
+- UI: comprobar flujo, consola, red y vistas móvil/escritorio cuando aplique. Si faltan herramientas, registrar la limitación y no declarar validación completa.
+- Delegar solo objetivo, rutas, decisiones del usuario y hallazgos relevantes. Cada agente consulta las reglas y documentos necesarios una vez por ejecución y vuelve a leerlos si cambian.

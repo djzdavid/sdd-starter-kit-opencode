@@ -13,11 +13,12 @@ La fuente de verdad técnica, el stack tecnológico (frameworks, base de datos, 
 
 ## Forma de Trabajar (Flujo SDD)
 
-1. **Lectura Obligatoria Previa:** Consultar siempre `docs/constitution.md`, `MEMORY.md` y la especificación activa dentro de `specs/` antes de responder, planificar o modificar código.
-2. **Gobernanza de Especificación:** Ninguna línea de código de producción o de prueba existe sin una especificación previamente aprobada en la carpeta `specs/`. Un borrador o propuesta en chat no autoriza implementar.
-3. **Cambios Enfocados:** Realizar cambios pequeños, atómicos y estrictamente vinculados al alcance de la tarea actual. No generar estructuras abstractas ni funcionalidades futuras por anticipado.
-4. **Claridad y Confirmación:** Explicar las decisiones con claridad y solicitar aclaraciones mediante `/sdd-clarify` ante cualquier ambigüedad de negocio.
-5. **Cierre de Especificaciones:** Al finalizar la validación de la spec completa, el rol coordinador resume los cambios realizados y actualiza `MEMORY.md` con un registro ultracompacto.
+1. **Contexto:** Consultar `docs/constitution.md`, `MEMORY.md` y la spec activa una vez por ejecución; releer si cambian. La skill `.opencode/skills/sdd/SKILL.md` define formatos, estados y evidencia.
+2. **Preparación conjunta:** Redactar requisitos, enfoque técnico y tareas en una ejecución. Formato compacto por defecto; documentos separados cuando la complejidad lo justifique.
+3. **Aprobación única:** Presentar el paquete completo guardado y obtener aprobación explícita antes de escribir código de producción o pruebas. La aprobación autoriza implementación, validación y cierre continuos; respetar si el usuario solicita solo preparación.
+4. **Clarificación:** Agrupar dudas de negocio bloqueantes durante la preparación. `/sdd-clarify` es opcional. Resolver detalles técnicos internos con las convenciones existentes.
+5. **Cambios enfocados:** No anticipar funcionalidades. Cambios de comportamiento o alcance requieren actualizar el paquete y aprobar el cambio; no volver a aprobar decisiones vigentes.
+6. **Cierre:** Revisión final independiente; revisión previa solo por riesgo justificado. Coordinator registra `cerrada` y actualiza memoria únicamente sin verificaciones obligatorias pendientes.
 
 ---
 
@@ -50,7 +51,7 @@ La fuente de verdad técnica, el stack tecnológico (frameworks, base de datos, 
 - **Estrategia:** Consultar en `docs/constitution.md` el ejecutor y comando oficial de pruebas del proyecto.
 - **Enfoque TDD:** Toda tarea debe implementar sus pruebas correspondientes (unitarias/integración) antes o en paralelo al código de producción.
 - **Aislamiento:** Aislar dependencias externas e integraciones mediante respuestas simuladas (*mocks* / *fixtures* controlados).
-- **Rigor en la ejecución:** Ejecutar la suite de pruebas pertinente antes de dar por completada una tarea. Informar los resultados con transparencia sin asumir verificaciones no realizadas.
+- **Rigor en la ejecución:** Ejecutar pruebas afectadas durante TDD y la suite completa al finalizar. Compartir evidencia válida del mismo estado del código entre agentes; repetir por cambios, evidencia insuficiente o riesgo concreto. Informar comando, resultado y estado verificado sin asumir comprobaciones no realizadas.
 
 ### 2. Verificación Visual e Interfaz de Usuario (si aplica)
 - Para cambios en UI/frontend, utilizar las herramientas de inspección o emulación disponibles (navegador local / DevTools MCP).
@@ -64,12 +65,9 @@ La fuente de verdad técnica, el stack tecnológico (frameworks, base de datos, 
 
 ## Comandos SDD Disponibles
 
-- `/sdd-constitution`: Define o actualiza las reglas técnicas innegociables en `docs/constitution.md`.
-- `/sdd-spec [nombre-feature]`: Crea o actualiza una especificación funcional en formato EARS.
-- `/sdd-clarify [nombre-feature]`: Audita la spec como QA despejando ambigüedades.
-- `/sdd-plan [nombre-feature]`: Diseña la arquitectura y plan técnico.
-- `/sdd-tasks [nombre-feature]`: Desglosa las tareas consolidadas (máximo 3-4 por spec).
-- `/sdd-implement [nombre-feature]`: Implementa el código guiado por TDD.
-- `/sdd-validate [nombre-feature]`: Audita la implementación RF por RF mediante tests y MCP visual.
-- `/sdd-change [nombre-feature]`: Gestiona cambios de alcance o requerimientos actualizando `spec.md` primero.
-- `/sdd-status [nombre-feature]`: Muestra la fase actual y el progreso del proyecto.
+- `/sdd-constitution`: Configura la gobernanza inicial; coordinator guarda tras aprobación.
+- `/sdd-spec [nombre]`: Prepara el paquete completo para una aprobación única.
+- `/sdd-implement [nombre]`: Implementa, valida y cierra lo aprobado sin pausas rutinarias.
+- `/sdd-change [nombre]`: Prepara un cambio completo y solicita aprobación del cambio.
+- `/sdd-status [nombre]`: Consulta estado, evidencia pendiente y siguiente acción.
+- Opcionales: `/sdd-clarify` audita dudas/riesgos, `/sdd-plan` ajusta enfoque y tareas, `/sdd-tasks` ajusta tareas, `/sdd-validate` reanuda o repite validación con motivo. No ejecutarlos después de pasos que ya realizaron ese trabajo.

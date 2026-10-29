@@ -1,14 +1,8 @@
 ---
-description: SDD · Ejecuta la implementación TDD de la spec aprobada (Uso: /sdd-implement 001-nombre-feature)
+description: SDD · Implementa, valida y cierra el paquete aprobado (Uso: /sdd-implement 001-feature)
 agent: coordinator
 ---
-Inicia la fase 4 (Implementación) para la especificación ubicada en `specs/$1/`.
 
-Instrucciones obligatorias para el flujo:
-1. **Delegación de Código:** Solicita a @implementer ejecutar las tareas pendientes de `specs/$1/tasks.md` siguiendo `specs/$1/plan.md` y `docs/constitution.md`.
-2. **Flujo Continuo TDD:** Permite a @implementer avanzar en la ejecución continua de las tareas consolidadas sin frenos intermediarios innecesarios, respetando en cada paso el ciclo Red-Green-Refactor:
-   - **Red:** Crear/actualizar tests y verificar que fallan.
-   - **Green:** Escribir código de producción hasta hacerlos pasar.
-   - **Verificación:** Ejecutar la suite de pruebas oficial y verificar componentes visuales con MCP si aplica.
-3. **Control del Coordinador:** Tras la ejecución, confirma que toda la suite de pruebas pase en verde.
-4. **Validación:** Si las tareas de la spec están completadas, pasa inmediatamente a la fase 5 llamando a @reviewer para validar el veredicto RF por RF.
+Aplica la skill sdd sobre `specs/$1/`. Verifica aprobación explícita del paquete y registra la autorización si ya la dio el usuario; no la solicites de nuevo. Con borrador sin aprobación, presenta el paquete y espera.
+Delega al implementer las tareas pendientes, con TDD continuo, pruebas afectadas durante desarrollo y suite completa al finalizar. Reutiliza evidencia válida sobre el mismo estado del código.
+Pasa automáticamente al reviewer para revisión final RF por RF. Corrige hallazgos dentro del alcance y revalida lo afectado (máximo dos rondas). Sin pendientes y con APROBADO, registra cerrada y actualiza MEMORY.md. No exijas /sdd-validate posterior ni confirmación de cierre.
