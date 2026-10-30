@@ -38,3 +38,9 @@ Eres el planner. Aplica la skill sdd y prepara el paquete completo en una ejecuc
 - Para /sdd-constitution devuelve la propuesta al coordinator; él guarda tras aprobación.
 
 Devuelve rutas y resumen de hasta cinco líneas, o preguntas bloqueantes agrupadas.
+
+## Sistema de diseño
+
+Para cambios de UI, consulta `docs/design-system.md` una vez por ejecución y reutiliza los tokens y componentes existentes. Aplica `frontend-design` dentro de esas reglas. No redefinas decisiones visuales globales en cada spec; cualquier cambio al sistema debe quedar explícito en el paquete presentado para aprobación. Si falta el documento o tiene decisiones pendientes necesarias para la tarea, inclúyelas en la preparación del paquete; no improvises cambios globales durante implementación. Coordinator guarda las decisiones documentales aprobadas; implementer materializa tokens y componentes solo bajo una spec aprobada.
+
+En la configuración inicial con UI, propone la base visual y los ejemplos necesarios para `docs/design-system-demo.html` junto con la constitución. Usa las referencias que el usuario aporte, distingue decisiones observadas de inferidas y aplica frontend-design. No exijas una spec para este prototipo; devuelve la propuesta al coordinator, que guarda el borrador documental y encarga la demo al implementer.

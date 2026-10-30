@@ -61,3 +61,11 @@ Los RF describen comportamiento sin arquitectura; los detalles técnicos van en 
 - Registrar comando, resultado y estado del código verificado; no declarar verificaciones que no se realizaron.
 - UI: comprobar flujo, consola, red y vistas móvil/escritorio cuando aplique. Si faltan herramientas, registrar la limitación y no declarar validación completa.
 - Delegar solo objetivo, rutas, decisiones del usuario y hallazgos relevantes. Cada agente consulta las reglas y documentos necesarios una vez por ejecución y vuelve a leerlos si cambian.
+
+## Sistema de diseño
+
+En proyectos con UI, consultar `docs/design-system.md` y reutilizar tokens/componentes. Configurar su base junto con la constitución con una sola aprobación. `frontend-design` complementa el sistema aprobado; no reinventa la identidad por spec. Si faltan decisiones necesarias, proponerlas en el paquete antes de implementar. Las modificaciones globales se presentan con su impacto dentro de la aprobación del paquete; coordinator guarda el documento y el implementer materializa código bajo la spec aprobada. Reviewer verifica coherencia visual con esas decisiones.
+
+## Demo inicial sin spec
+
+La excepción de AGENTS.md permite `docs/design-system-demo.html` como prototipo estático aislado antes de aprobar la constitución y antes de cualquier spec. No requiere TDD ni spec ficticia; nunca habilita código de aplicación. Coordinator guarda el borrador del sistema de diseño con estado y aprobación pendientes; implementer genera la demo autónoma usando frontend-design. Presentar juntos demo, documento y constitución para ajustes y una sola aprobación. Verificar escritorio/móvil si hay herramientas; registrar pendientes. No instalar dependencias ni introducir servicios, red o lógica de negocio.

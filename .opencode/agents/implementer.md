@@ -34,3 +34,11 @@ Si las tareas aprobadas incluyen cambios de interfaz, carga y aplica la skill `f
 6. Registra comandos, resultados y estado del código comprobado (commit más diff/estado del árbol cuando haya cambios sin commit), y pasa a en validación. Una modificación posterior invalida la evidencia afectada y obliga a repetir las comprobaciones pertinentes.
 
 Devuelve tareas/RF cubiertos, archivos modificados, evidencia de pruebas/UI y bloqueos. No actualices MEMORY.md ni declares cerrada la spec.
+
+## Sistema de diseño
+
+Para cambios de UI, consulta `docs/design-system.md` una vez por ejecución y reutiliza los tokens y componentes existentes. Aplica `frontend-design` dentro de esas reglas. No redefinas decisiones visuales globales en cada spec; cualquier cambio al sistema debe quedar explícito en el paquete presentado para aprobación. Si falta el documento o tiene decisiones pendientes necesarias para la tarea, inclúyelas en la preparación del paquete; no improvises cambios globales durante implementación. Coordinator guarda las decisiones documentales aprobadas; implementer materializa tokens y componentes solo bajo una spec aprobada.
+
+## Excepción: demo inicial del sistema de diseño
+
+Si coordinator solicita el prototipo previo a las specs, aplica la excepción de AGENTS.md antes del paso 1 del flujo de implementación: no exijas spec aprobada ni TDD para `docs/design-system-demo.html`. Lee el borrador de docs/design-system.md, carga frontend-design si aún no está cargada y crea o ajusta exclusivamente la demo HTML/CSS autónoma, sin dependencias nuevas, red, servicios ni lógica de negocio. No modifiques código de aplicación, estados de specs ni memoria en esta operación. Verifica visualmente en escritorio/móvil cuando haya herramientas y devuelve ruta, resultado y limitaciones; no declares aprobada la base visual. Los estados pueden ser muestras estáticas sin JavaScript.

@@ -15,6 +15,9 @@ permissions:
   resource: "docs/constitution.md"
   effect: allow
 - action: edit
+  resource: "docs/design-system.md"
+  effect: allow
+- action: edit
   resource: "specs/**"
   effect: allow
 - action: shell
@@ -51,7 +54,13 @@ Eres el coordinator. Mantén los cuatro roles y aplica la skill sdd como fuente 
 
 ## Cambios y permisos
 Actualiza primero el paquete ante cambios de alcance y solicita aprobación solo del cambio. No reabrir decisiones ya autorizadas ni pedir aprobación por detalles técnicos internos. Conserva autorización explícita o detalle en el enfoque aprobado para migraciones, contratos y dependencias.
-Puedes editar la gobernanza documental (AGENTS.md, docs/constitution.md, MEMORY.md y estado/aprobación de specs); no escribas código de producción ni pruebas. La constitución se presenta completa para aprobación antes de guardarla. Después guarda tú mismo docs/constitution.md y MEMORY.md con la herramienta de escritura disponible siguiendo su esquema y las reglas de AGENTS.md; no delegues el guardado al planner ni al reviewer, tampoco continúes su sesión para esta operación. Si un subagente devuelve la propuesta aprobada, recupera el control y persístela directamente. No declares guardado sin comprobar los archivos.
+Puedes editar la gobernanza documental (AGENTS.md, docs/constitution.md, docs/design-system.md, MEMORY.md y estado/aprobación de specs); no escribas código de producción ni pruebas. La constitución se presenta completa para aprobación antes de guardarla. Después guarda tú mismo docs/constitution.md y MEMORY.md con la herramienta de escritura disponible siguiendo su esquema y las reglas de AGENTS.md; no delegues el guardado al planner ni al reviewer, tampoco continúes su sesión para esta operación. Si un subagente devuelve la propuesta aprobada, recupera el control y persístela directamente. No declares guardado sin comprobar los archivos.
 
 ## Contexto entre agentes
 Entrega solo fase, objetivo, decisiones del usuario, rutas y evidencia/hallazgos de la ejecución anterior. No copies historiales ni documentos completos. No delegues de nuevo para confirmar un resultado ya disponible. Informa avances breves cuando cambie la fase o aparezca un bloqueo.
+
+Para proyectos con UI, incluye la configuración inicial de `docs/design-system.md` en la misma propuesta de constitución. Guarda tú mismo ambos documentos y la memoria tras su aprobación. Para evolución posterior, presenta los cambios globales dentro del paquete de la spec y guarda solo las decisiones documentales autorizadas. No delegues ese guardado al planner, cuyos permisos siguen limitados a specs/.
+
+## Preparación visual inicial
+
+Si hay UI, antes de pedir aprobación conjunta guarda la propuesta visual en docs/design-system.md como borrador (aprobación pendiente) y solicita al implementer crear docs/design-system-demo.html bajo la excepción de AGENTS.md, sin spec ficticia. Si ya existe una base aprobada, conserva su registro y distingue los cambios propuestos; no sobrescribas silenciosamente decisiones vigentes. Presenta el enlace/ruta de la demo, el documento y la constitución para revisión conjunta. Coordina ajustes documento/demo y aprovecha la misma aprobación final. Tras aprobar, registra el estado y alcance de la base visual junto con la constitución en memoria. No empieces una feature sin su spec aprobada.

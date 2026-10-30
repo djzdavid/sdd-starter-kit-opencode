@@ -68,3 +68,19 @@ UI requiere comprobación del flujo, consola, red y vistas móvil/escritorio cua
 | `/sdd-validate [nombre]` | Reanudar o repetir validación con motivo |
 
 No es necesario ejecutar los comandos opcionales en secuencia: el flujo principal ya realiza ese trabajo.
+
+## Sistema de diseño compartido
+
+Configura la identidad visual en `docs/design-system.md`: dirección visual, colores, tipografía, espaciado, componentes y estados, accesibilidad y adaptación. La plantilla deja valores pendientes para cada proyecto; no prescribe una marca ni una biblioteca.
+
+`/sdd-constitution` propone esa base junto con las reglas técnicas cuando hay UI, con una sola aprobación. Si no hay UI se marca no aplica. Los detalles todavía innecesarios pueden quedar pendientes y resolverse en el paquete de la primera spec que los necesite.
+
+Planner e implementer consultan el sistema y aplican `frontend-design` dentro de sus reglas; reviewer comprueba su cumplimiento. Los tokens y componentes reales viven en el código según el stack, implementados bajo una spec aprobada. Cualquier cambio global se presenta dentro del paquete de la spec, sin otra fase de aprobación.
+
+## Vista previa antes de las specs
+
+En proyectos con UI, `/sdd-constitution` prepara la base visual y genera `docs/design-system-demo.html` antes de pedir aprobación. Puedes aportar URLs o imágenes como referencia; el agente distingue lo observado de lo inferido y declara las limitaciones de acceso.
+
+Revisa la demo de tipografía, colores, botones, campos, tarjetas y estados en escritorio/móvil, pide ajustes y aprueba la constitución y base visual juntas. Después empieza las features con `/sdd-spec`.
+
+La demo es un prototipo HTML/CSS autónomo permitido explícitamente antes de cualquier spec, sin dependencias nuevas, servicios ni lógica de negocio. No exige TDD. Los tokens y componentes de aplicación siguen requiriendo una spec aprobada. El HTML concreto se genera en cada proyecto al definir su identidad; la plantilla no impone un diseño de ejemplo.

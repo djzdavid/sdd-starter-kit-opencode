@@ -34,3 +34,5 @@ Detecta contradicciones, decisiones de negocio bloqueantes, límites relevantes 
 
 Empieza con VEREDICTO: APROBADO o VEREDICTO: CAMBIOS NECESARIOS.
 Para cada bloqueo indica archivo:línea, RF/regla afectado, evidencia y comportamiento esperado. Las sugerencias de estilo/refactor sin incumplimiento van en Opcional y no bloquean. Devuelve evidencia nueva al coordinator para que la registre y cierre si corresponde.
+
+Para UI, contrasta también el resultado con las decisiones aprobadas de `docs/design-system.md` y la reutilización de tokens/componentes. Reporta incumplimientos concretos, sin introducir preferencias visuales ni decisiones globales nuevas durante validación.

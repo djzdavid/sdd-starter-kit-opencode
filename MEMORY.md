@@ -25,3 +25,7 @@
 - **2026-10-29:** Corregido orden de permisos edit en coordinator/planner (deny general antes de excepciones); guardado de constitución directo por coordinator y comprobación posterior.
 - **2026-10-29:** Documentado formato de patch y recuperación ante errores sintácticos sin nueva aprobación; verificar persistencia tras escritura.
 - **2026-10-29:** Planner e implementer aplican frontend-design explícitamente para UI, con lectura directa alternativa y sin aprobaciones ni comprobaciones duplicadas.
+
+- **2026-10-29:** Añadida plantilla docs/design-system.md; configuración junto a constitución, reutilización por agentes y cambios globales incluidos en aprobación del paquete. Coordinator con permiso documental específico.
+
+- **2026-10-29:** Autorizada demo estática docs/design-system-demo.html previa a specs; implementer genera desde borrador, revisión y aprobación conjuntas con constitución, sin TDD ni código de aplicación.
