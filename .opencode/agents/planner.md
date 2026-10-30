@@ -9,11 +9,11 @@ tools:
 - read
 permissions:
 - action: edit
-  resource: "specs/**"
-  effect: allow
-- action: edit
   resource: "*"
   effect: deny
+- action: edit
+  resource: "specs/**"
+  effect: allow
 - action: shell
   resource: "*"
   effect: deny

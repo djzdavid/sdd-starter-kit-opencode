@@ -22,3 +22,4 @@
 ## Historial de Cambios Metodológicos y Gobernanza
 - **[FECHA]:** Inicialización de la plantilla SDD. Constitución pendiente de configuración mediante `/sdd-constitution`.
 - **2026-10-29:** Flujo ágil aprobado: paquete compacto, aprobación única, cuatro agentes, revisión final y evidencia reutilizable; comandos opcionales sin duplicación. Normalizado MEMORY.md. Sin cambios de modelos/MCP.
+- **2026-10-29:** Corregido orden de permisos edit en coordinator/planner (deny general antes de excepciones); guardado de constitución directo por coordinator y comprobación posterior.
