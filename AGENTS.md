@@ -45,6 +45,12 @@ La fuente de verdad técnica, el stack tecnológico (frameworks, base de datos, 
 
 ---
 
+## Uso de herramientas de escritura
+
+- Respetar el esquema y formato de la herramienta disponible. Para documentos, preferir `edit` para sustituciones concretas o `write` para archivos nuevos o reemplazos completos previamente leídos.
+- Si se utiliza una herramienta de patch que exige el formato `apply_patch`, enviar el texto del patch sin cercas Markdown ni explicaciones: primera línea exacta `*** Begin Patch`, operaciones como `*** Update File: ruta`, bloques de cambios y última línea `*** End Patch`. No enviar un diff de Git como sustituto.
+- Un fallo de formato del patch no implica falta de permisos. Corregir el formato y reintentar la misma operación autorizada; no pedir otra aprobación ni delegarla por este motivo. Leer después los archivos para comprobar lo persistido.
+
 ## Verificación y Calidad de Funcionalidades
 
 ### 1. Pruebas Automatizadas (TDD)
