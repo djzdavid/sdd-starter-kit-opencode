@@ -11,18 +11,22 @@
       ]
     }
   },
-  "agents": {
+  "agent": {
     "coordinator": {
-      "model": "gpt-6.1-sol"
+      "mode": "primary",
+      "model": "openai/gpt-6.1-sol"
     },
     "planner": {
-      "model": "gpt-6.1-sol"
+      "mode": "subagent",
+      "model": "openai/gpt-6.1-sol"
     },
     "implementer": {
-      "model": "gemini-3.7-flash"
+      "mode": "subagent",
+      "model": "deepseek/deepseek-flash"
     },
     "reviewer": {
-      "model": "gemini-3.5-flash-lite"
+      "mode": "subagent",
+      "model": "deepseek/deepseek-flash"
     }
   }
 }
